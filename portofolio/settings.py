@@ -16,9 +16,7 @@ import os
 from dotenv import load_dotenv
 # Load environment variables from .env file
 ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "elvis-sestomi-myportofolio.pws.cs.ui.ac.id",
+    "*",
 ]
 PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
 load_dotenv()
