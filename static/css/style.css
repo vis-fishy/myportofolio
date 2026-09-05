@@ -32,20 +32,23 @@ h1, .brand {
 }
 
 .site-header {
-    border-bottom: 1px solid var(--line);
+    background-color: var(--accent);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .site-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 1.5rem;
+    padding: 0.8rem 1.5rem;
 }
 
 .brand {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--ink);
+    color: var(--paper);
     text-decoration: none;
 }
 
@@ -55,7 +58,7 @@ h1, .brand {
 }
 
 .site-header nav a {
-    color: var(--ink);
+    color: var(--paper);
     text-decoration: none;
     font-size: 0.95rem;
 }
