@@ -16,8 +16,8 @@ html::-webkit-scrollbar {
     --ink: #1c1917;
     --paper: #faf6f0;
     --accent: #d95d39;
-    --header-accent:#c94d29;
     --accent-dark: #a8442a;
+    --text-accent-dark:#d2a195;
     --line: #e3d9c9;
     --text-muted: #6b6459;
     --radius: 4px;
@@ -213,18 +213,15 @@ h1, h2, .brand {
 
 .experience-card {
     border: 1px solid var(--line);
+    outline: 5px solid transparent;
     padding: 0.5rem 0.8rem 0.5rem;
     border-radius: var(--radius);
     transition: 
-        background-color 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease;
+        outline-color 0.3s ease,
 }
 
 .experience-card:hover {
-    background-color: var(--accent-dark);
-    color: white;
-    transform: translateY(-2px) translateX(-2px);
+    outline-color: var(--text-accent-dark);
 }
 
 .experience-card .description{
