@@ -208,8 +208,7 @@ h1, h2, .brand {
 .experience-cards {
     grid-area: card;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 3rem;
+    gap: 1.5rem 0;
 }
 
 .experience-card {
