@@ -21,7 +21,7 @@ body {
     line-height: 1.6;
 }
 
-h1, .brand {
+h1, h2, .brand {
     font-family: "Space Grotesk", -apple-system, sans-serif;
 }
 
@@ -84,7 +84,7 @@ h1, .brand {
     grid-area: details;
 }
 
-.hero-kicker {
+.kicker {
     font-size: 0.85rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -170,6 +170,30 @@ h1, .brand {
     object-fit: cover;
     border-radius: var(--radius);
     border: 3px solid var(--ink);
+}
+
+.content {
+    border-top: 1px solid var(--line);
+    padding: 4.5rem 0 5rem;
+}
+
+.experience-grid {
+    display: grid;
+    gap: 1.5rem 3rem;
+}
+
+.experience-punchline{
+}
+
+.experience-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 3rem;
+}
+
+.experience-card {
+    border: 1px solid var(--ink);
+    border-radius: 5px;
 }
 
 .site-footer {
