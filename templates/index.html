@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elvis - Portfolio</title>
+    <title>{{ name }} - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -12,10 +12,10 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="#profile" class="brand">Elvis</a>
+            <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
             <nav>
-                <a href="#profile">Profile</a>
-                <a href="#experience">Experience</a>
+                <a href="{% url 'main:show_main' %}">Profile</a>
+                <a href="{% url 'main:show_experience' %}">Experience</a>
             </nav>
         </div>
     </header>
@@ -25,22 +25,22 @@
             <div class="container hero-grid">
                 <div class="hero-identity">
                     <p class="kicker">Computer Science &middot; Universitas Indonesia</p>
-                    <h1>Elvis Sestomi</h1>
+                    <h1>{{ name }}</h1>
                 </div>
                 <div class="hero-photo">
                     <div class="photo-block"></div>
-                    <img class="avatar" src="/static/img/elvis.jpeg" alt="Photo of Elvis">
+                    <img class="avatar" src="/static/img/elvis.jpeg" alt="Photo of {{ name }}">
                 </div>
                 <div class="hero-details">
-                    <p class="bio">CS student at Universitas Indonesia, Expected to graduate in 2029. Interested in Cyber Security and Web Development</p>
+                    <p class="bio">{{ bio }}</p>
                     <dl class="meta-list">
                         <div class="meta-row">
                             <dt>NPM</dt>
-                            <dd>2506544990</dd>
+                            <dd>{{ npm }}</dd>
                         </div>
                         <div class="meta-row">
                             <dt>Program</dt>
-                            <dd>S1 Ilmu Komputer - Reguler</dd>
+                            <dd>{{ study_program }}</dd>
                         </div>
                     </dl>
                     <div class="social-links">
@@ -51,103 +51,12 @@
                 </div>
             </div>
         </section>
-
-        <section class="content" id="experience">
-            <div class="container experience-grid">
-                <div class="experience-punchline">
-                    <p class="kicker">Things i've involved in</p>
-                    <h2>My Experience</h2>
-                </div>
-
-                <div class="experience-cards">
-                    
-                    <div class="experience-card">
-                        <div class="card-header">
-                            <p class="bio"><em>Apr 2026 - Aug 2026</em></p>
-                            <h2>COMPFEST 18 UXA</h2>
-                            <p class="bio"><em>Staff</em></p>
-                        </div>
-                        <span class="experience-toggle">+</span>
-                        <div class="card-details">
-                            <div class="card-details-inner">
-                                <ul>
-                                    <li>Assisted in planning UXA bootcamp rundowns and assigning operational roles, including Host, Time Keeper, and Presentation Operator, showcasing adept logistical and planning skills.</li>
-                                    <li>Collaborated with staff to finalize event rundowns under tight deadline.</li>
-                                    <li>Supported online bootcamp sessions as MC, Host, Time Keeper, Presentation Operator, and Liaison Officer for Group D.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="experience-card">
-                        <div class="card-header">
-                            <p class="bio"><em>Aug 2026 - Present</em></p>
-                            <h2>COMPFEST 18</h2>
-                            <p class="bio"><em>Case Study LO</em></p>
-                        </div>
-                        <span class="experience-toggle">+</span>
-                        <div class="card-details">
-                            <div class="card-details-inner">
-                                <ul>
-                                    <li>Coordinated Case Study sessions between mentors and participants, including scheduling and Zoom session management.</li>
-                                    <li>Assisted mentors in facilitating online sessions and took over session leadership when necessary to ensure smooth delivery.</li>
-                                    <li>Served as the communication bridge between mentors and participants by addressing and relaying technical questions related to the Case Study.</li>
-                                    <li>Supported the technical and operational needs of Case Study sessions to ensure effective communication and a smooth learning experience for participants.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="experience-card">
-                        <div class="card-header">
-                            <p class="bio"><em>Jul 2026 - Present</em></p>
-                            <h2>DDP 0</h2>
-                            <p class="bio"><em>Mentor</em></p>
-                        </div>
-                        <span class="experience-toggle">+</span>
-                        <div class="card-details">
-                            <div class="card-details-inner">
-                                <ul>
-                                    <li>Mentored students in learning fundamental Python programming concepts as preparation for the DDP 1 course.</li>
-                                    <li>Explained Python concepts in a structured manner and guided mentees through programming exercises to strengthen their understanding.</li>
-                                    <li>Assisted mentees in overcoming programming challenges and developing their problem-solving skills.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!--
-                    <div class="experience-card">
-                        <div class="card-header">
-                            <p class="bio">[month] [year] - [month] [year]</p>
-                            <h2>[organization]</h2>
-                            <p class="bio">[position]</p>
-                        </div>
-                        <span class="experience-toggle">+</span>
-                        <div class="card-details">
-                            <div class="card-details-inner">
-                                <ul>
-                                    <li>test</li>
-                                    <li>test</li>
-                                    <li>test</li>
-                                    <li>test</li>
-                                    <li>test</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-                </div>
-                    
-            </div>
-        </section>
     </main>
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Elvis. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
+            <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
         </div>
     </footer>
-    <script src="/static/js/script.js"></script>
 </body>
 </html>
