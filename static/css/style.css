@@ -72,6 +72,10 @@ h1, h2, .brand {
     font-size: 0.95rem;
 }
 
+.empty-state {
+    color: var(--text-muted);
+}
+
 .hero {
     padding: 4.5rem 0 5rem;
 }
@@ -181,7 +185,7 @@ h1, h2, .brand {
     border: 3px solid var(--ink);
 }
 
-.content {
+.experience-content {
     border-top: 1px solid var(--line);
     padding: 4.5rem 0 5rem;
 }

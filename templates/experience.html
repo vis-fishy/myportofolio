@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience - {{ name }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
+            <nav>
+                <a href="{% url 'main:show_main' %}">Profile</a>
+                <a href="{% url 'main:show_experience' %}">Experience</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="experience-content" id="experience">
+            <div class="container experience-grid">
+                <div class="experience-punchline">
+                    <p class="kicker">Things i've involved in</p>
+                    <h2>My Experience</h2>
+                </div>
+
+                <div class="experience-cards">
+                    {% for experience in experience_list %}
+                        <div class="experience-card">
+                            <div class="card-header">
+                                {% if experience.is_ongoing %}
+                                    <p class="experience-status">Present</p>
+                                {% else %}
+                                    <p class="bio"><em>{{ experience.time_range_display }}</em></p>
+                                {% endif %}
+                                <h2>{{ experience.organization }}</h2>
+                                <p class="bio"><em>{{ experience.title }}</em></p>
+                            </div>
+                            <span class="experience-toggle">+</span>
+                            <div class="card-details">
+                                <div class="card-details-inner">
+                                    <ul>
+                                        {% for desc in experience.description %}
+                                            <li>{{ desc }}</li>
+                                        {% empty %}
+                                            <p class="empty-state">
+                                                Belum ada deskripsi yang ditambahkan.
+                                            </p>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p class="empty-state">
+                            Belum ada pengalaman yang ditambahkan.
+                        </p>
+                    {% endfor %}
+                    <!--
+                    <div class="experience-card">
+                        <div class="card-header">
+                            <p class="bio">[month] [year] - [month] [year]</p>
+                            <h2>[organization]</h2>
+                            <p class="bio">[position]</p>
+                        </div>
+                        <span class="experience-toggle">+</span>
+                        <div class="card-details">
+                            <div class="card-details-inner">
+                                <ul>
+                                    <li>test</li>
+                                    <li>test</li>
+                                    <li>test</li>
+                                    <li>test</li>
+                                    <li>test</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>-->
+                        
+                </div>
+                    
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
+        </div>
+    </footer>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
