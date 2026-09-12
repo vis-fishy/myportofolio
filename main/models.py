@@ -29,8 +29,15 @@ class Experience(models.Model):
 
 class Certification(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    thumbnail = models.URLField(blank=True, null=True)
     course_name = models.CharField(max_length=255)
     publisher = models.CharField(max_length=255)
     year_display = models.CharField(max_length=255)
     finished_at = models.DateTimeField(auto_now_add=True)
     verification_url = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.course_name
+    
+    def thumbnail_avaiability(self):
+        return self.thumbnail is not None
