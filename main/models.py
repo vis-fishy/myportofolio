@@ -27,10 +27,10 @@ class Experience(models.Model):
     def is_ongoing(self):
         return self.ended_at is None
 
-class Certifications(models.Model):
+class Certification(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     course_name = models.CharField(max_length=255)
     publisher = models.CharField(max_length=255)
-    description = models.JSONField(default=list)
+    year_display = models.CharField(max_length=255)
     finished_at = models.DateTimeField(auto_now_add=True)
     verification_url = models.URLField(blank=True, null=True)

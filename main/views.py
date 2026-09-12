@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from main.models import Experience, Certifications
+from main.models import Experience, Certification
 
 
 def show_main(request):
@@ -26,6 +26,6 @@ def show_experience(request):
 def show_certification(request):
     context = {
         "name": "Elvis",
-        "certification_list": Certifications.objects.all()[::-1],
+        "certification_list": Certification.objects.all()[::-1],
     }
     return render(request, "certification.html", context)
