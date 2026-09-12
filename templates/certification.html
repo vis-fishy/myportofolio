@@ -16,28 +16,34 @@
             <nav>
                 <a href="{% url 'main:show_main' %}">Profile</a>
                 <a href="{% url 'main:show_experience' %}">Experience</a>
+                <a href="{% url 'main:show_certification' %}">Certification</a>
             </nav>
         </div>
     </header>
 
     <main>
 
-        <section class="experience-content" id="experience">
-            <div class="container experience-grid">
-                <div class="experience-punchline">
+        <section class="certification-content" id="certification">
+            <div class="container certification-grid">
+                <div class="certification-punchline">
                     <p class="kicker">I spended time on these</p>
                     <h2>My Certification</h2>
+                    <p class="empty-state">Try click the cards :v</p>
                 </div>
 
-                <div class="experience-cards">
+                <div class="certification-cards">
                     {% for cert in certification_list %}
-                        <div class="experience-card">
-                            <div class="card-header">
-                                <p class="bio"><em>{{ experience.time_range_display }}</em></p>
-                                <h2>{{ cert.course_name }}</h2>
-                                <p class="bio"><em>Published in : {{ cert.year_display }} by <a href="{{ cert.verification_url}}">{{ cert.publisher }}</a></em></p>
+                        <a href="{{ cert.verification_url }}">
+                            <div class="certification-card">
+                                <div class="card-header">
+                                    <h2>{{ cert.course_name }}</h2>
+                                    <p class="bio"><em>Published : in {{ cert.year_display }} by {{ cert.publisher }}</em></p>
+                                </div>
+                                <div class="card-thumbnail">
+                                    <span class="card-image"><img src="{{ cert.thumbnail }}" alt="thumbnail" width="70"></span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     {% empty %}
                         <p class="empty-state">
                             No certifications have been added yet.

@@ -34,6 +34,16 @@ h1, h2, .brand {
     font-family: "Space Grotesk", -apple-system, sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: var(--ink);
+}
+
+img {
+    outline: 2px solid var(--accent-50);
+    border-radius: 5px;
+}
+
 .container {
     max-width: 960px;
     margin: 0 auto;
@@ -70,6 +80,7 @@ h1, h2, .brand {
     color: var(--paper);
     text-decoration: none;
     font-size: 0.95rem;
+    font-family: "Space Grotesk", -apple-system, sans-serif;
 }
 
 .empty-state {
@@ -280,6 +291,68 @@ h1, h2, .brand {
 .experience-card ul{
     color:var(--text-muted);
     padding-left: 1.5rem;
+}
+
+.certification-content {
+    border-top: 1px solid var(--line);
+    padding: 4.5rem 0 5rem;
+}
+
+.certification-grid {
+    display: grid;
+    gap: 2.5rem 3rem;
+    grid-template-columns: 0fr 1fr 0fr;
+    grid-template-areas: 
+        "left center right"
+        "card card card";
+}
+
+.certification-punchline{
+    text-align: center;
+    grid-area: center;
+}
+
+.certification-cards {
+    grid-area: card;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    gap: 1.5rem 1rem;
+}
+
+.certification-card {
+    display: grid;
+    grid-template-columns: 1fr 90px;
+    grid-template-areas: 
+        "header thumbnail";
+    border: 1px solid var(--line);
+    outline: 5px solid transparent;
+    padding: 0.5rem 0.8rem 0.5rem;
+    border-radius: var(--radius);
+    transition: 
+        outline-color 0.3s ease;
+}
+
+.certification-card .card-header {
+    grid-area: header;
+}
+
+.certification-card .card-thumbnail {
+    grid-area: thumbnail;
+    display: grid;
+    grid-template-areas:
+        "a b c"
+        "d center e"
+        "f g h"
+    ;
+}
+
+.card-thumbnail .card-image{
+    grid-area: center;
+}
+
+.card-image {
+    display: grid;
+    place-items: center;
 }
 
 .site-footer {
