@@ -28,7 +28,7 @@
                 <div class="certification-punchline">
                     <p class="kicker">I spended time on these</p>
                     <h2>My Certification</h2>
-                    <p class="empty-state">Try click the cards :v</p>
+                    <p class="empty-state" style="padding-top: 15px;">Try click the cards :v</p>
                 </div>
 
                 {% if certification_list %}
@@ -37,15 +37,25 @@
                             {% for cert in certification_list %}
                                 {% if forloop.counter|divisibleby:2 %}
                                 {% else %}
+                                    {% if cert.verification_url %}
                                     <a href="{{ cert.verification_url }}">
+                                    {% else %}
+                                    <a href="#">
+                                    {% endif %}
+                                        {% if cert.thumbnail %}
                                         <div class="certification-card">
+                                        {% else %}
+                                        <div class="certification-card" style="grid-template-areas: 'header header';">
+                                        {% endif %}
                                             <div class="card-header">
                                                 <h2>{{ cert.course_name }}</h2>
                                                 <p class="bio"><em>Published : in {{ cert.year_display }} by {{ cert.publisher }}</em></p>
                                             </div>
+                                            {% if cert.thumbnail %}
                                             <div class="card-thumbnail">
                                                 <span class="card-image"><img src="{{ cert.thumbnail }}" alt="thumbnail" width="70"></span>
                                             </div>
+                                            {% endif %}
                                         </div>
                                     </a>
                                 {% endif %}
@@ -71,9 +81,11 @@
                         </div>
                     </div>
                 {% else %}
-                    <p class="empty-state">
-                        No certifications have been added yet.
-                    </p>
+                    <div class="certification-cards">
+                        <p class="empty-state">
+                            No certifications have been added yet.
+                        </p>
+                    </div>
                 {% endif %}
             </div>
         </section>

@@ -216,7 +216,7 @@ img {
 }
 
 .experience-punchline h2{
-    font-size: clamp(2rem, 3vw, 3rem);
+    font-size: clamp(1.8rem, 3vw, 3rem);
     line-height: 0.85;
 }
 
@@ -313,7 +313,7 @@ img {
 }
 
 .certification-punchline h2 {
-    font-size: clamp(2rem, 3vw, 3rem);
+    font-size: clamp(1.8rem, 3vw, 3rem);
     line-height: 0.85;
 }
 
@@ -332,6 +332,7 @@ img {
 
 .certification-card {
     display: grid;
+    min-height: 6.5rem;
     grid-template-columns: 1fr 90px;
     grid-template-areas: 
         "header thumbnail";
@@ -349,6 +350,7 @@ img {
 
 .certification-card .card-header {
     grid-area: header;
+    align-content: center;
 }
 
 .card-header h2 {
@@ -409,6 +411,7 @@ img {
 
     .certification-card {
         grid-template-columns: 1fr 0fr;
+        min-height: 4rem;
     }
 
     .site-header .container{
