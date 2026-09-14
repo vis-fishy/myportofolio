@@ -11,7 +11,7 @@ Kelas : PBP b
 3. repetisi yang memungkinkan saya untuk mudah keliru dalam building suatu section, seperti experience card di web saya. fungsionalitas dinamis yang ingin saya terapkan sejujurnya ialah data entry yang memungkinkan untuk bermanfaat dalam building dan menghilangkan repetisi, sehingga website tersebut dapat saya build dengan konsep "hanya mengisi template".
 
 
-### AI Disclosure
+### AI Disclosure Tugas 1
 saya menggunakan chat gpt versi web untuk membantu dan memperbaiki beberapa bagian (mostly css) serta memberikan inspirasi terhadap design.
 
 1.  https://chatgpt.com/share/6a9ed200-7c40-83ec-8f55-56dbba21127f (dropdown/switchlike behavior card)
@@ -42,3 +42,15 @@ pada chat ini, saya awalnya merasa bahwa pada platform web desktop, terlihat scr
 6. https://chatgpt.com/share/6a9d6fdc-f2d8-83ec-a2b2-39e5d59c6b46 (first prototype by ai)
 
 pada chat ini sebenarnya saya hanya ingin mencari inspirasi dan melihat sebuah prototype, yang mana pada awalnya merupakan struktur 2 col. tetapi pada akhirnya saya tinggalkan struktur tersebut karena terinspirasi oleh web portofolio mentor dulunya. yang saya adopsi pada chat ini ialah beberapa metode, salah satunya konsep reuse yang diterapkan pada sebagian komponen. chat ini kemungkinan besar tanpa saya sadari menginfluence saya dalam hal design preference pada web saya.
+
+### Tugas 2
+
+1. Pertama user akan membuka link menuju server, dan dari link tersebut, user melakukan http request ke server django. Request tersebut kemudian diterima oleh file urls.py di root proyek. Ibarat pintu masuk utama yang membuka jalan ke pintu lainnya, urls.py akan menyeleksi request berdasarkan pattern yang ada. Pada proyek portofolio ini, isi dari root file urls.py ialah pattern untuk memperoleh response admin dan sebuah pintu masuk baru (urls.py pada app main). Ekspektasi kita ialah link user tidak menuju ke admin site, sehingga request akan diteruskan ke urls.py milik app main. Pada file tersebut, akan dicari lagi pattern yang sesuai, dan jika didapat pattern yang diinginkan, akan terdapat fungsi yang dijalankan, dimana fungsi tersebut juga akan menerima request yang telah diteruskan kepada urls.py. biasanya fungsi tersebut disimpan didalam file views.py, sehingga yang di letakkan sebagai aksi untuk pattern dalam urls.py ialah sebuah reference menuju fungsi tersebut. Kembali lagi ke views.py, fungsi yang telah dipanggil tersebut akan merancang sebuah response (rendering) berdasarkan beberapa hal seperti data perancang web yang berdasarkan suatu model yang disimpan dalam file models.py milik app. biasanya response tersebut tidak dirancang dari 0, melainkan terdapat sebuah template yang dirancang di root directory untuk dapat digunakan sebagai template pembuatan web yang kemudian diisikan data-data yang telah tersimpan dalam database.
+2. jika di tuliskan langsung dalam template, maka setiap penambahan data baru pada web akan memerlukan waktu dan langkah yang lebih banyak, tetapi jika dituliskan dalam bentuk suatu model, maka kita sebagai developer memperoleh kemudahan dimana jika terdapat data baru, kita hanya perlu menulisnya berdasarkan model tersebut ke dalam database. hal ini sangat mengurangi waktu development karena dengan scenario tersebut, kita bisa menempuhnya dengan cara tidak mengulangi suatu blok kode dan hanya melakukan automasi. 
+3. perbedaan makemigrations dan migrate bisa kita ibaratkan seperti pembuatan blueprint dan penyimpanan blueprint, dimana makemigrations awalnya akan melakukan pembuatan atau peng-update-an blueprint berdasarkan perubahan yang ada pada model, jika diperlukan. sedangkan migrate itu sendiri melakukan aksi penyimpanan kedalam database sehingga setiap object yang sudah ada dalam database, perlu mengikuti blueprint yang sudah berubah itu. contoh perubahan model yang mengharuskan kita untuk menjalankan kedua fungsi tersebut ialah ketika kita menambahkan sebuah field baru dalam model.
+
+### AI Disclosure Tugas 2
+saya menggunakan chat gpt versi web untuk membantu memberikan inspirasi terhadap design serta cara mengimplementasikan suatu design.
+
+https://chatgpt.com/share/6aa812cc-3584-83ec-af5b-4b223df9ebac (masonry layout)
+
