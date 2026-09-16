@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from django.core import serializers
+from django.http import HttpResponse
+from main.forms import *
 
-from main.models import Experience, Certification
+from main.models import *
 
 
 def show_main(request):
@@ -29,3 +33,24 @@ def show_certification(request):
         "certification_list": Certification.objects.all()[::-1],
     }
     return render(request, "certification.html", context)
+
+def create_project(request):
+    form = ProjectForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Proyek baru berhasil ditambahkan!")
+        return redirect("main:show_projects")
+
+    context = {
+        "name": "Burhan",
+        "form": form,
+    }
+    return render(request, "projects_form.html", context)
+
+def show_projects(request):
+    context = {
+        "name" : "Elvis",
+        "project_list" : Project.objects.all()
+    }
+    return render(request, "project.html", context)
