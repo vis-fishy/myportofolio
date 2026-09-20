@@ -28,11 +28,42 @@ def show_experience(request):
     return render(request, "experience.html", context)
 
 def show_certification(request):
+    json_response = get_projects_json(request)
+    
+    cert = serializers.deserialize(
+        "json",
+        json_response.content.decode("utf-8"),
+    )
+    cert = [certif.object for certif in cert]
     context = {
         "name": "Elvis",
-        "certification_list": Certification.objects.all()[::-1],
+        "certification_list": cert,
     }
     return render(request, "certification.html", context)
+
+def get_cert_json(request):
+    title_query = request.GET.get("title", "").strip()
+    cert = Certification.objects.all()
+
+    if title_query:
+        cert = cert.filter(title__icontains=title_query)
+
+    certs_json = serializers.serialize("json", cert)
+    return HttpResponse(certs_json, content_type="application/json")
+
+def create_certification(request):
+    form = CertificationForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Sertifikasi baru berhasil ditambahkan!")
+        return redirect("main:show_certification")
+
+    context = {
+        "name": "Elvis",
+        "form": form,
+    }
+    return render(request, "cert_form.html", context)
 
 def create_project(request):
     form = ProjectForm(request.POST or None)
@@ -43,7 +74,7 @@ def create_project(request):
         return redirect("main:show_projects")
 
     context = {
-        "name": "Burhan",
+        "name": "Elvis",
         "form": form,
     }
     return render(request, "projects_form.html", context)

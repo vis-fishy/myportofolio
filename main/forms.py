@@ -1,6 +1,8 @@
 from django.forms import ModelForm, TextInput, Textarea, URLInput
 
-from main.models import Project
+from main.models import Project, Certification
+
+
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -47,6 +49,54 @@ class ProjectForm(ModelForm):
             "project_image_url": URLInput(
                 attrs={
                     "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
+                }
+            ),
+        }
+
+
+class CertificationForm(ModelForm):
+    class Meta:
+        model = Certification
+        fields = [
+            "thumbnail",
+            "publisher",
+            "course_name",
+            "year_display",
+            "verification_url",
+        ]
+
+        labels = {
+            "thumbnail": "Icon Penerbit",
+            "publisher": "Nama Penerbit",
+            "course_name": "Nama Prestasi/Course",
+            "year_display": "Tahun Terbit",
+            "verification_url": "Link Verifikasi",
+        }
+
+        widgets = {
+            "thumbnail": URLInput(
+                attrs={
+                    "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
+                }
+            ),
+            "publisher": TextInput(
+                attrs={
+                    "placeholder": "Coursera",
+                }
+            ),
+            "course_name": TextInput(
+                attrs={
+                    "placeholder": "Basic of Prompt Engineering",
+                }
+            ),
+            "year_display": TextInput(
+                attrs={
+                    "placeholder": "YYYY",
+                }
+            ),
+            "verification_url": URLInput(
+                attrs={
+                    "placeholder": "Your verification link",
                 }
             ),
         }
