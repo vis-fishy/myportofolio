@@ -93,10 +93,6 @@ img {
     color: var(--text-muted);
 }
 
-.hero {
-    padding: 4.5rem 0 5rem;
-}
-
 .hero-grid {
     display: grid;
     grid-template-columns: 1.3fr 1fr;
@@ -202,11 +198,6 @@ img {
     border: 3px solid var(--ink);
 }
 
-.experience-content {
-    border-top: 1px solid var(--line);
-    padding: 4.5rem 0 5rem;
-}
-
 .experience-grid {
     display: grid;
     gap: 2.5rem 3rem;
@@ -299,11 +290,6 @@ img {
     padding-left: 1.5rem;
 }
 
-.certification-content {
-    border-top: 1px solid var(--line);
-    padding: 4.5rem 0 5rem;
-}
-
 .certification-grid {
     display: grid;
     gap: 2.5rem 3rem;
@@ -384,9 +370,8 @@ img {
 }
 
 /* project page */
-.project-section {
-    padding: 4rem 0;
-    border-top: 1px solid var(--line);
+.content {
+    padding: 4rem 0 5rem;
 }
 
 .project-kicker {
@@ -397,8 +382,7 @@ img {
     text-transform: uppercase;
 }
 
-.project-section h1 {
-    margin: 0.4rem 0 1.5rem;
+.project-header h1 {
     font-size: 2rem;
 }
 
@@ -665,43 +649,7 @@ img {
 }
 
 @media (max-width: 600px) {
-    .project-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .project-add-button {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .project-search {
-        flex-direction: column;
-    }
-
-    .project-search .button {
-        width: 100%;
-    }
-
-    .project-delete-modal {
-        align-items: flex-end;
-        padding: 0;
-    }
-
-    .project-delete-modal__content {
-        width: 100%;
-        padding: 1.25rem;
-        border-radius: var(--radius) var(--radius) 0 0;
-    }
-
-    .project-delete-modal__actions {
-        flex-direction: column-reverse;
-    }
-
-    .project-delete-modal__actions .button {
-        width: 100%;
-        text-align: center;
-    }
+    
 }
 /* end project forms page*/
 
@@ -753,5 +701,47 @@ img {
         top: auto;
         position: static;
         z-index: auto;
+    }
+
+    .project-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .project-add-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .project-search {
+        flex-direction: column;
+    }
+
+    .project-search .button {
+        width: 100%;
+    }
+
+    .project-delete-modal {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .project-delete-modal__content {
+        width: 100%;
+        padding: 1.25rem;
+        border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .project-delete-modal__actions {
+        flex-direction: column-reverse;
+    }
+
+    .project-delete-modal__actions .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .project-page-grid {
+        grid-template-columns: 1fr;
     }
 }
