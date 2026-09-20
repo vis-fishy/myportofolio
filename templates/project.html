@@ -4,9 +4,9 @@
 {% endblock meta %}
 {% block content %}
     <main>
-        <section class="experience-content" id="experience">
+        <section class="project-section" id="project">
             <div class="container">
-                <p class="kicker">Karya yang saya bangun</p>
+                <p class="project-kicker">Karya yang saya bangun</p>
                 <div class="project-header">
                     <h1>Projects</h1>
                     <a href="{% url 'main:create_project' %}"
@@ -26,17 +26,17 @@
                            aria-label="Cari berdasarkan nama proyek">
                     <button type="submit" class="button">Cari</button>
                 </form>
-                <div class="experience-grid project-grid">
+                <div class="project-page-grid project-grid">
                     {% for project in project_list %}
-                        <article class="experience-card">
+                        <article class="project-card">
                             {% if project.project_image_url %}
                                 <img src="{{ project.project_image_url }}"
                                      alt="Gambar {{ project.title }}"
                                      class="project-image">
                             {% endif %}
                             <h2>{{ project.title }}</h2>
-                            <span class="experience-category">{{ project.tech_stack }}</span>
-                            <p class="experience-description">{{ project.description }}</p>
+                            <span class="project-category">{{ project.tech_stack }}</span>
+                            <p class="project-description">{{ project.description }}</p>
                             <div class="project-card-actions">
                                 <div class="project-actions">
                                     {% if project.project_url %}
