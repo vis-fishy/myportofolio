@@ -54,3 +54,17 @@ saya menggunakan chat gpt versi web untuk membantu memberikan inspirasi terhadap
 
 https://chatgpt.com/share/6aa812cc-3584-83ec-af5b-4b223df9ebac (masonry layout)
 
+### Tugas 3
+
+1. ModelForm digunakan karena dapat membuat form Django yang terhubung langsung dengan model yang sudah dibuat dalam models.py sehingga kita tidak perlu mendefinisikan setiap field secara manual di HTML dan melakukan validasi sendiri. Hal ini membuat kode lebih singkat, konsisten, dan mengurangi kemungkinan kesalahan dibandingkan membuat form HTML secara manual. Sementara itu, csrf token digunakan untuk menghindari terjadinya cross site request forgery. Django memberikan token unik pada form sehingga ketika request POST dikirim, Django dapat memeriksa apakah request tersebut benar-benar berasal dari form yang dibuat oleh aplikasi tersebut.
+2. karena format yang digunakan dalam penulisan JSON itu lebih sederhana dan lebih mirip dengan format syntax yang digunakan pada sebagian besar bahasa pemrograman. jika dibandingkan dengan XML, XML memerlukan banyak tag berbeda seperti menuliskan HTML, dan hal tersebut menyebabkan potensi terjadi typo semakin tinggi.
+3. Client atau aplikasi mengirim request ke URL yang terhubung dengan view dan mengarah ke fungsi yang seharusnya mengembalikan data dalam format json. Dalam fungsi tersebut, biasanya django akan mengumpulkan data yang diinginkan oleh request, dan karena data tersebut biasanya masih dalam bentuk object Models milik django, perlu dilakukan serialize terlebih dahulu. Proses serialize akan mengubah setiap field dan valuenya menjadi format json dalam bentuk key value pair. Setelah proses serialize selesai, data tersebut barulah di kembalikan dalam bentuk HttpResponse ke pengguna, dan kemudian dapat digunakan untuk ditampilkan dalam frontend atau aplikasi lain. Proses serialization diperlukan karena object Models pada django memiliki struktur dan perilaku yang berbeda dengan format json pada umumnya, sehingga diperlukan serialization menjadi format yang sesuai.
+
+### AI Disclosure Tugas 3
+saya menggunakan chat gpt versi web untuk membantu dalam memikirkan metode yang tepat dalam mengimplementasikan edit delete dan button layout serta password implementation.
+
+https://chatgpt.com/share/6ab15516-412c-83ec-8dfb-86b2b6ed42c6 (password field and a bit of delete button layout)
+
+https://chatgpt.com/share/6ab1557f-3bdc-83ec-bd5f-cb0bfb1c9c97 (delete cert request handling)
+
+https://chatgpt.com/share/6ab155a8-df70-83ec-a546-3dbebd2546bb (edit cert request handling)
