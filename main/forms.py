@@ -1,10 +1,15 @@
-from django.forms import ModelForm, TextInput, Textarea, URLInput
+from django.forms import *
 
 from main.models import Project, Certification
 
 
 
 class ProjectForm(ModelForm):
+    password = CharField(
+        label="Password",
+        widget=PasswordInput,
+    )
+
     class Meta:
         model = Project
         fields = [
@@ -55,6 +60,10 @@ class ProjectForm(ModelForm):
 
 
 class CertificationForm(ModelForm):
+    password = CharField(
+            label="Password",
+            widget=PasswordInput,
+        )
     class Meta:
         model = Certification
         fields = [

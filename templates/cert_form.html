@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block meta %}
-    <title>Add Project - {{ name }}</title>
+    <title>Add Certification - {{ name }}</title>
     <link rel="stylesheet" href="/static/css/cert_form.css">
 {% endblock meta %}
 
 {% block content %}
     <div class="container">
-        <h1>Add New Projects</h1>
+        <h1>Add New Certifications</h1>
         <form method="post"
                 action="{% url 'main:create_certification' %}"
                 class="project-form">

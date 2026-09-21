@@ -1,22 +1,6 @@
 /* =========================================================
    PROJECT PAGE
    ========================================================= */
-
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-.empty-state {
-    color: var(--text-muted);
-}
-
-.content {
-    padding: 4rem 0 5rem;
-}
-
-
 /* ---------------------------------------------------------
    Project Header
    --------------------------------------------------------- */
@@ -276,6 +260,44 @@
 .button-danger {
     background: #b42318;
 }
+
+.form-group {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.7rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    font: inherit;
+    transition:
+        border-color 0.2s ease,
+        outline-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: 2px solid var(--accent);
+    border-color: var(--accent);
+}
+
+.form-error {
+    color: #b42318;
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+}
+
 
 
 /* =========================================================

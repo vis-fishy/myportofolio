@@ -50,6 +50,9 @@ a {
     color: var(--ink);
 }
 
+.empty-state {
+    color: var(--text-muted);
+}
 
 /* ========================================
    CONTAINER

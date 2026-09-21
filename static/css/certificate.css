@@ -1,117 +1,4 @@
 /* ========================================
-   GLOBAL / BASE
-   ======================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scrollbar-width: none;
-}
-
-html::-webkit-scrollbar {
-    display: none;
-}
-
-:root {
-    --ink: #1c1917;
-    --paper: #faf6f0;
-    --accent: #d95d39;
-    --accent-dark: #a8442a;
-    --accent-50: rgba(217, 92, 57, 0.3);
-    --line: #e3d9c9;
-    --text-muted: #6b6459;
-    --radius: 4px;
-}
-
-body {
-    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--ink);
-    background-color: var(--paper);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
-main {
-    flex-grow: 1;
-}
-
-h1,
-h2,
-.brand {
-    font-family: "Space Grotesk", -apple-system, sans-serif;
-}
-
-a {
-    text-decoration: none;
-    color: var(--ink);
-}
-
-
-/* ========================================
-   CONTAINER
-   ======================================== */
-
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-
-/* ========================================
-   HEADER
-   ======================================== */
-
-.site-header {
-    background-color: var(--accent);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.site-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 1.5rem;
-}
-
-.brand {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--paper);
-    text-decoration: none;
-}
-
-.site-header nav {
-    display: flex;
-    gap: 2rem;
-}
-
-.site-header nav a {
-    color: var(--paper);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-family: "Space Grotesk", -apple-system, sans-serif;
-}
-
-
-/* ========================================
-   CONTENT
-   ======================================== */
-
-.content {
-    padding: 4rem 0 5rem;
-}
-
-
-/* ========================================
    CERTIFICATION PAGE
    ======================================== */
 
@@ -141,10 +28,6 @@ a {
     color: var(--accent-dark);
     font-weight: 700;
     margin-bottom: 0.75rem;
-}
-
-.empty-state {
-    color: var(--text-muted);
 }
 
 .certification-cards {
@@ -183,6 +66,7 @@ a {
     align-content: center;
 }
 
+
 .card-header h2 {
     font-size: clamp(0.5rem, 1.5rem, 2rem);
     line-height: 1.2;
@@ -211,6 +95,27 @@ a {
     max-width: 480px;
 }
 
+.card-action {
+    display: flex;
+    padding: 0.5rem 0rem;
+    flex-direction: row;
+    column-gap: 0.5rem;
+}
+
+.button {
+    display: inline-block;
+    height: fit-content;
+    border: 0;
+    border-radius: var(--radius);
+    padding: 0.4rem 1rem;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+}
 
 /* ========================================
    IMAGE
@@ -221,19 +126,138 @@ img {
     border-radius: 5px;
 }
 
+/* =========================================================
+   CERT DELETE MODAL
+   Included by certification.html
+   ========================================================= */
 
-/* ========================================
-   FOOTER
-   ======================================== */
-
-.site-footer {
-    bottom: 0;
-    padding: 1.5rem;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    border-top: 1px solid var(--line);
+.project-grid .project-card {
+    display: flex;
+    flex-direction: column;
 }
 
+.project-status {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.project-actions .project-status {
+    margin-top: 0;
+}
+
+.project-delete-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 1rem;
+    border: 0;
+    background: transparent;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-delete-modal:popover-open {
+    display: flex;
+}
+
+.project-delete-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    background: rgba(28, 25, 23, 0.58);
+    cursor: default;
+}
+
+.project-delete-modal__content {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 480px);
+    padding: 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 1rem 3rem rgba(28, 25, 23, 0.22);
+}
+
+.project-delete-modal__content h2 {
+    margin: 0 0 0.75rem;
+    font-family:
+        "Space Grotesk",
+        -apple-system,
+        sans-serif;
+    font-size: 1.5rem;
+}
+
+.project-delete-modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.project-delete-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.button-danger {
+    background: #b42318;
+}
+
+.form-group {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.7rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    font: inherit;
+    transition:
+        border-color 0.2s ease,
+        outline-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: 2px solid var(--accent);
+    border-color: var(--accent);
+}
+
+.form-error {
+    color: #b42318;
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+}
 
 /* ========================================
    RESPONSIVE
@@ -251,18 +275,5 @@ img {
     .certification-card {
         grid-template-columns: 1fr 0fr;
         min-height: 4rem;
-    }
-
-    .site-header .container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        padding: 1rem 1.5rem;
-    }
-
-    .site-header {
-        top: auto;
-        position: static;
-        z-index: auto;
     }
 }

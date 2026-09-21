@@ -20,6 +20,7 @@ def show_main(request):
     return render(request, "index.html", context)
 
 
+# EXPERIENCE ACTION
 def show_experience(request):
     context = {
         "name": "Elvis",
@@ -27,6 +28,8 @@ def show_experience(request):
     }
     return render(request, "experience.html", context)
 
+
+# CERTIFICATION ACTION
 def show_certification(request):
     json_response = get_cert_json(request)
     
@@ -55,24 +58,37 @@ def create_certification(request):
     form = CertificationForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
-        form.save()
-        messages.success(request, "Sertifikasi baru berhasil ditambahkan!")
-        return redirect("main:show_certification")
-
+        if request.POST.get("password") == "test":
+            form.save()
+            messages.success(request, "Sertifikasi baru berhasil ditambahkan!")
+            return redirect("main:show_certification")
     context = {
         "name": "Elvis",
         "form": form,
     }
     return render(request, "cert_form.html", context)
 
+def delete_cert(request, cert_id):
+    cert = get_object_or_404(Certification, pk=cert_id)
+
+    if request.method == "POST":
+        if request.POST.get("password") == "test":
+            cert.delete()
+            messages.success(request, "Sertifikasi berhasil dihapus!")
+            return redirect("main:show_certification")
+        
+    return redirect("main:show_certification")
+
+
+# PROJECT ACTION
 def create_project(request):
     form = ProjectForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
-        form.save()
-        messages.success(request, "Proyek baru berhasil ditambahkan!")
-        return redirect("main:show_projects")
-
+        if request.POST.get("password") == "test":
+            form.save()
+            messages.success(request, "Proyek baru berhasil ditambahkan!")
+            return redirect("main:show_projects")
     context = {
         "name": "Elvis",
         "form": form,
@@ -110,8 +126,9 @@ def delete_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
 
     if request.method == "POST":
-        project.delete()
-        messages.success(request, "Project berhasil dihapus!")
-        return redirect("main:show_projects")
+        if request.POST.get("password") == "test":
+            project.delete()
+            messages.success(request, "Project berhasil dihapus!")
+            return redirect("main:show_projects")
 
     return redirect("main:show_projects")

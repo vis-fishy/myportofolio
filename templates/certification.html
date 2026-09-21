@@ -17,44 +17,59 @@
                     {% for cert in certification_list %}
                         {% if forloop.counter|divisibleby:2 %}
                         {% else %}
-                            {% if cert.verification_url %}
-                            <a href="{{ cert.verification_url }}">
+                            
+                            {% if cert.thumbnail %}
+                            <div class="certification-card">
                             {% else %}
-                            <a href="#">
+                            <div class="certification-card" style="grid-template-areas: 'header header';">
                             {% endif %}
-                                {% if cert.thumbnail %}
-                                <div class="certification-card">
-                                {% else %}
-                                <div class="certification-card" style="grid-template-areas: 'header header';">
-                                {% endif %}
-                                    <div class="card-header">
-                                        <h2>{{ cert.course_name }}</h2>
-                                        <p class="bio"><em>Published : in {{ cert.year_display }} by {{ cert.publisher }}</em></p>
-                                    </div>
-                                    {% if cert.thumbnail %}
-                                    <div class="card-thumbnail">
-                                        <span class="card-image"><img src="{{ cert.thumbnail }}" alt="thumbnail" width="70"></span>
-                                    </div>
-                                    {% endif %}
+                                <div class="card-header">
+                                    <h2>{{ cert.course_name }}</h2>
+                                    <p class="bio"><em>Published : in {{ cert.year_display }} by {{ cert.publisher }}</em></p>
                                 </div>
-                            </a>
+                                {% if cert.thumbnail %}
+                                <div class="card-thumbnail">
+                                    <span class="card-image"><img src="{{ cert.thumbnail }}" alt="thumbnail" width="70"></span>
+                                </div>
+                                {% endif %}
+                                <div class="card-action">
+                                    <a href="{{ cert.verification_url }}" class="button">Edit</a> <!--TODO: MAKE EDIT URL-->
+                                    {% if cert.verification_url %}
+                                    <a href="{{ cert.verification_url }}" target="_blank" class="button">Verifikasi</a>
+                                    {% endif %}
+                                    {% include "components/cert_delete_modal.html" with cert=cert %}
+                                </div>
+                            </div>
+                
                         {% endif %}
                     {% endfor %}
                 </div>
                 <div class="card-columns">
                     {% for cert in certification_list %}
                         {% if forloop.counter|divisibleby:2 %}
-                            <a href="{{ cert.verification_url }}">
-                                <div class="certification-card">
-                                    <div class="card-header">
-                                        <h2>{{ cert.course_name }}</h2>
-                                        <p class="bio"><em>Published : in {{ cert.year_display }} by {{ cert.publisher }}</em></p>
-                                    </div>
-                                    <div class="card-thumbnail">
-                                        <span class="card-image"><img src="{{ cert.thumbnail }}" alt="thumbnail" width="70"></span>
-                                    </div>
+                            
+                            {% if cert.thumbnail %}
+                            <div class="certification-card">
+                            {% else %}
+                            <div class="certification-card" style="grid-template-areas: 'header header';">
+                            {% endif %}
+                                <div class="card-header">
+                                    <h2>{{ cert.course_name }}</h2>
+                                    <p class="bio"><em>Published : in {{ cert.year_display }} by {{ cert.publisher }}</em></p>
                                 </div>
-                            </a>
+                                {% if cert.thumbnail %}
+                                <div class="card-thumbnail">
+                                    <span class="card-image"><img src="{{ cert.thumbnail }}" alt="thumbnail" width="70"></span>
+                                </div>
+                                {% endif %}
+                                <div class="card-action">
+                                    <a href="{{ cert.verification_url }}" target="_blank" class="button">Edit</a>
+                                    {% if cert.verification_url %}
+                                        <a href="{{ cert.verification_url }}" target="_blank" class="button">Verifikasi</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+
                         {% else %}
                         {% endif %}
                     {% endfor %}
