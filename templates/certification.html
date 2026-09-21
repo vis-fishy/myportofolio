@@ -33,7 +33,7 @@
                                 </div>
                                 {% endif %}
                                 <div class="card-action">
-                                    <a href="{{ cert.verification_url }}" class="button">Edit</a> <!--TODO: MAKE EDIT URL-->
+                                    <a href="{% url 'main:edit_cert' cert.id %}" class="button">Edit</a>
                                     {% if cert.verification_url %}
                                     <a href="{{ cert.verification_url }}" target="_blank" class="button">Verifikasi</a>
                                     {% endif %}
@@ -63,10 +63,11 @@
                                 </div>
                                 {% endif %}
                                 <div class="card-action">
-                                    <a href="{{ cert.verification_url }}" target="_blank" class="button">Edit</a>
+                                    <a href="{{ cert.verification_url }}" class="button">Edit</a> <!--TODO: MAKE EDIT URL-->
                                     {% if cert.verification_url %}
-                                        <a href="{{ cert.verification_url }}" target="_blank" class="button">Verifikasi</a>
+                                    <a href="{{ cert.verification_url }}" target="_blank" class="button">Verifikasi</a>
                                     {% endif %}
+                                    {% include "components/cert_delete_modal.html" with cert=cert %}
                                 </div>
                             </div>
 

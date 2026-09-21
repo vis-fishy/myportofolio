@@ -68,8 +68,8 @@ def create_certification(request):
     }
     return render(request, "cert_form.html", context)
 
-def delete_cert(request, cert_id):
-    cert = get_object_or_404(Certification, pk=cert_id)
+def delete_cert(request, id):
+    cert = get_object_or_404(Certification, pk=id)
 
     if request.method == "POST":
         if request.POST.get("password") == "test":
@@ -79,6 +79,26 @@ def delete_cert(request, cert_id):
         
     return redirect("main:show_certification")
 
+def edit_cert(request, id):
+    cert = get_object_or_404(Certification, pk=id)
+
+    if request.method == "POST":
+        form = CertificationForm(request.POST, instance=cert)
+
+        if form.is_valid() and request.POST.get("password") == "test":
+            form.save()
+            return redirect("main:show_certification")
+
+    else:
+        form = CertificationForm(instance=cert)
+
+    context = {
+        "name": "Elvis",
+        "form": form,
+        "cert": cert,
+    }
+
+    return render(request, "cert_form_edit.html", context)
 
 # PROJECT ACTION
 def create_project(request):
