@@ -28,7 +28,7 @@ def show_experience(request):
     return render(request, "experience.html", context)
 
 def show_certification(request):
-    json_response = get_projects_json(request)
+    json_response = get_cert_json(request)
     
     cert = serializers.deserialize(
         "json",
