@@ -1,0 +1,199 @@
+/* =========================================================
+   GLOBAL / BASE
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --ink: #1c1917;
+  --paper: #faf6f0;
+  --accent: #d95d39;
+  --accent-dark: #a8442a;
+  --accent-50: #f4e2dc;
+  --line: #e3d9c9;
+  --text-muted: #78716c;
+  --radius: 10px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+h1,
+h2,
+.brand {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin-inline: auto;
+}
+
+.site-header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-header nav a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.content {
+  padding: 4rem 0;
+}
+
+.site-footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   PROJECT / CERTIFICATION FORM
+   ========================================================= */
+
+.project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  max-width: 600px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font: inherit;
+  color: var(--ink);
+  background-color: var(--paper);
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-error {
+  color: var(--accent-dark);
+  font-size: 0.85rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 0.65rem 1rem;
+  background-color: var(--ink);
+  color: var(--paper);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.button-secondary {
+  background-color: transparent;
+  color: var(--ink);
+}
+
+.button-secondary:hover {
+  background-color: var(--accent-50);
+  border-color: var(--accent);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .site-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-header nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

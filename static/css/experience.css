@@ -1,0 +1,258 @@
+/* ========================================
+   GLOBAL / BASE
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+:root {
+    --ink: #1c1917;
+    --paper: #faf6f0;
+    --accent: #d95d39;
+    --accent-dark: #a8442a;
+    --accent-50: rgba(217, 92, 57, 0.3);
+    --line: #e3d9c9;
+    --text-muted: #6b6459;
+    --radius: 4px;
+}
+
+body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background-color: var(--paper);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+h1, h2, .brand {
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--ink);
+}
+
+
+/* ========================================
+   CONTAINER
+   ======================================== */
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.site-header {
+    background-color: var(--accent);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+}
+
+.brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--paper);
+    text-decoration: none;
+}
+
+.site-header nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.site-header nav a {
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+}
+
+
+/* ========================================
+   EXPERIENCE PAGE
+   ======================================== */
+
+.content {
+    padding: 4rem 0 5rem;
+}
+
+.experience-grid {
+    display: grid;
+    gap: 2.5rem 3rem;
+    grid-template-columns: 0fr 1fr 0fr;
+    grid-template-areas:
+        "left center right"
+        "card card card";
+}
+
+.experience-punchline {
+    text-align: center;
+    grid-area: center;
+}
+
+.experience-punchline h2 {
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    line-height: 0.85;
+}
+
+.kicker {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.experience-cards {
+    grid-area: card;
+    display: grid;
+    gap: 1.5rem 1rem;
+}
+
+.experience-card {
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    grid-template-areas:
+        "header toggle"
+        "detail detail";
+    border: 1px solid var(--line);
+    outline: 5px solid transparent;
+    padding: 0.5rem 0.8rem 0.5rem;
+    border-radius: var(--radius);
+    transition:
+        outline-color 0.3s ease;
+}
+
+.experience-card:hover {
+    outline-color: var(--accent-50);
+}
+
+
+/* NOT USED */
+.experience-card .description {
+    padding: 0.3rem 0rem;
+}
+
+.experience-card .card-header {
+    grid-area: header;
+}
+
+.experience-card .experience-toggle {
+    text-align: center;
+    grid-area: toggle;
+}
+
+.experience-card .card-details {
+    grid-area: detail;
+}
+
+.experience-toggle {
+    display: grid;
+    place-items: center;
+    font-size: clamp(1rem, 2vw, 3rem);
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+}
+
+.experience-card .card-details {
+    grid-area: detail;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+}
+
+.experience-card .card-details .card-details-inner {
+    overflow: hidden;
+}
+
+.experience-card.expanded .card-details {
+    grid-template-rows: 1fr;
+}
+
+.experience-card.expanded .experience-toggle {
+    transform: rotate(45deg);
+}
+
+.experience-card ul {
+    color: var(--text-muted);
+    padding-left: 1.5rem;
+}
+
+.bio {
+    color: var(--text-muted);
+    max-width: 480px;
+}
+
+.empty-state {
+    color: var(--text-muted);
+}
+
+.experience-status {
+    margin-top: 0;
+}
+
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.site-footer {
+    bottom: 0;
+    padding: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--line);
+}
+
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 600px) {
+    .site-header .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .site-header {
+        top: auto;
+        position: static;
+        z-index: auto;
+    }
+}
