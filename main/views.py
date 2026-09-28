@@ -3,11 +3,53 @@ from django.contrib import messages
 from django.core import serializers
 from django.http import HttpResponse
 from main.forms import *
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.decorators import login_required  # Tambahkan baris ini
+from django.core.exceptions import PermissionDenied        # Tambahkan baris ini
+import datetime
 
 from main.models import *
 
 
+def register(request):
+    form = UserCreationForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Akun berhasil dibuat. Silakan login.")
+        return redirect("main:login")
+
+    context = {
+        "name": "Elvis",
+        "form": form,
+    }
+    return render(request, "register.html", context)
+
+def login_user(request):
+    form = AuthenticationForm(request, data=request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        user = form.get_user()
+        login(request, user)
+        response = redirect("main:show_main")
+        response.set_cookie('last_login', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return response
+
+    context = {
+        "name": "Elvis",
+        "form": form,
+    }
+    return render(request, "login.html", context)
+
+def logout_user(request):
+    logout(request)
+    response = redirect("main:show_main")
+    response.delete_cookie('last_login')
+    return response
+
 def show_main(request):
+    last_login = request.COOKIES.get('last_login', 'Belum ada sesi login / Cookie tidak ditemukan')
     context = {
         "full_name": "Elvis Sestomi",
         "name": "Elvis",
@@ -16,8 +58,10 @@ def show_main(request):
         "bio": (
             "CS student at Universitas Indonesia, Expected to graduate in 2029. Interested in Cyber Security and Web Development."
         ),
+        "last_login": last_login,
     }
     return render(request, "index.html", context)
+
 
 
 # EXPERIENCE ACTION
@@ -27,6 +71,7 @@ def show_experience(request):
         "experience_list": Experience.objects.all()[::-1],
     }
     return render(request, "experience.html", context)
+
 
 
 # CERTIFICATION ACTION
@@ -99,6 +144,8 @@ def edit_cert(request, id):
     }
 
     return render(request, "cert_form_edit.html", context)
+
+
 
 # PROJECT ACTION
 def create_project(request):
