@@ -49,12 +49,17 @@
     border: 0;
     border-radius: var(--radius);
     padding: 0.65rem 1rem;
-    background: var(--accent);
+    background: var(--ink);
     color: white;
     cursor: pointer;
     font: inherit;
     font-weight: 700;
     text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.button:hover{
+    background: var(--accent);
 }
 
 .button-secondary {
@@ -346,4 +351,26 @@
     .project-page-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.star-form {
+    display: inline;
+}
+
+.button-star {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--ink);
+}
+
+.button-star.is-starred {
+    background: var(--accent);
+}
+
+.star-count {
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.25);
+    font-size: 0.8rem;
 }

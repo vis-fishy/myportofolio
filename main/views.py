@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.contrib import messages
 from django.core import serializers
 from django.http import HttpResponse
@@ -32,13 +33,20 @@ def login_user(request):
     if request.method == "POST" and form.is_valid():
         user = form.get_user()
         login(request, user)
-        response = redirect("main:show_main")
+
+        next_url = request.POST.get("next")
+        
+        if not(next_url) or url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
+            next_url="/"
+
+        response = redirect(next_url)
         response.set_cookie('last_login', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return response
 
     context = {
         "name": "Elvis",
         "form": form,
+        "next": request.GET.get("next", ""),
     }
     return render(request, "login.html", context)
 
@@ -99,38 +107,48 @@ def get_cert_json(request):
     certs_json = serializers.serialize("json", cert)
     return HttpResponse(certs_json, content_type="application/json")
 
+@login_required(login_url="/login/")  # Tambahkan baris ini
 def create_certification(request):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
     form = CertificationForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
-        if request.POST.get("password") == "test":
-            form.save()
-            messages.success(request, "Sertifikasi baru berhasil ditambahkan!")
-            return redirect("main:show_certification")
+        form.save()
+        messages.success(request, "Sertifikasi baru berhasil ditambahkan!")
+        return redirect("main:show_certification")
     context = {
         "name": "Elvis",
         "form": form,
     }
     return render(request, "cert_form.html", context)
 
+@login_required(login_url="/login/")  # Tambahkan baris ini
 def delete_cert(request, id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
     cert = get_object_or_404(Certification, pk=id)
 
     if request.method == "POST":
-        if request.POST.get("password") == "test":
-            cert.delete()
-            messages.success(request, "Sertifikasi berhasil dihapus!")
-            return redirect("main:show_certification")
+        cert.delete()
+        messages.success(request, "Sertifikasi berhasil dihapus!")
+        return redirect("main:show_certification")
         
     return redirect("main:show_certification")
 
+@login_required(login_url="/login/")  # Tambahkan baris ini
 def edit_cert(request, id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
     cert = get_object_or_404(Certification, pk=id)
 
     if request.method == "POST":
         form = CertificationForm(request.POST, instance=cert)
 
-        if form.is_valid() and request.POST.get("password") == "test":
+        if form.is_valid():
             form.save()
             return redirect("main:show_certification")
 
@@ -148,14 +166,17 @@ def edit_cert(request, id):
 
 
 # PROJECT ACTION
+@login_required(login_url="/login/")  # Tambahkan baris ini
 def create_project(request):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
     form = ProjectForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
-        if request.POST.get("password") == "test":
-            form.save()
-            messages.success(request, "Proyek baru berhasil ditambahkan!")
-            return redirect("main:show_projects")
+        form.save()
+        messages.success(request, "Proyek baru berhasil ditambahkan!")
+        return redirect("main:show_projects")
     context = {
         "name": "Elvis",
         "form": form,
@@ -186,16 +207,37 @@ def get_projects_json(request):
     if title_query:
         projects = projects.filter(title__icontains=title_query)
 
-    projects_json = serializers.serialize("json", projects)
+    projects_json = serializers.serialize(
+        "json", projects, use_natural_foreign_keys=True  # Tambahkan argumen ini
+    )
     return HttpResponse(projects_json, content_type="application/json")
 
+@login_required(login_url="/login/")  # Tambahkan baris ini
 def delete_project(request, project_id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+        
     project = get_object_or_404(Project, pk=project_id)
 
     if request.method == "POST":
-        if request.POST.get("password") == "test":
-            project.delete()
-            messages.success(request, "Project berhasil dihapus!")
-            return redirect("main:show_projects")
+        project.delete()
+        messages.success(request, "Project berhasil dihapus!")
+        return redirect("main:show_projects")
+        
+
+    return redirect("main:show_projects")
+
+# Tanpa cek is_superuser: semua akun yang sudah login boleh memberi star
+@login_required(login_url="/login/")
+def toggle_star(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+
+    if request.method == "POST":
+        # Kalau akun ini sudah pernah memberi star, batalkan star-nya.
+        # Kalau belum, tambahkan star.
+        if request.user in project.starred_by.all():
+            project.starred_by.remove(request.user)
+        else:
+            project.starred_by.add(request.user)
 
     return redirect("main:show_projects")
