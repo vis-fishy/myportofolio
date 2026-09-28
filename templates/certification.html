@@ -33,6 +33,7 @@
                                 </div>
                                 {% endif %}
                                 <div class="card-action">
+                                    {% include "components/cert_star.html" with cert=cert %}
                                     {% if cert.verification_url %}
                                     <a href="{{ cert.verification_url }}" target="_blank" class="button">Verifikasi</a>
                                     {% endif %}
@@ -67,6 +68,7 @@
                                 </div>
                                 {% endif %}
                                 <div class="card-action">
+                                    {% include "components/cert_star.html" with cert=cert %}
                                     {% if cert.verification_url %}
                                     <a href="{{ cert.verification_url }}" target="_blank" class="button">Verifikasi</a>
                                     {% endif %}

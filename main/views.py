@@ -165,6 +165,20 @@ def edit_cert(request, id):
 
     return render(request, "cert_form_edit.html", context)
 
+@login_required(login_url="/login/")
+def toggle_star_cert(request, cert_id):
+    cert = get_object_or_404(Certification, pk=cert_id)
+
+    if request.method == "POST":
+        # Kalau akun ini sudah pernah memberi star, batalkan star-nya.
+        # Kalau belum, tambahkan star.
+        if request.user in cert.starred_by.all():
+            cert.starred_by.remove(request.user)
+        else:
+            cert.starred_by.add(request.user)
+
+    return redirect("main:show_certification")
+
 
 
 # PROJECT ACTION

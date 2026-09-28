@@ -108,9 +108,6 @@
     border: 0;
     border-radius: var(--radius);
     padding: 0.4rem 1rem;
-    background: var(--accent);
-    color: white;
-    cursor: pointer;
     font: inherit;
     font-size: 0.9rem;
     font-weight: 500;

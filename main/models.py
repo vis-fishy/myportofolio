@@ -36,6 +36,9 @@ class Certification(models.Model):
     year_display = models.CharField(max_length=255)
     finished_at = models.DateTimeField(auto_now_add=True)
     verification_url = models.URLField(blank=True, null=True)
+    starred_by = models.ManyToManyField(
+        User, related_name="starred_cert", blank=True
+    )
 
     def __str__(self):
         return self.course_name

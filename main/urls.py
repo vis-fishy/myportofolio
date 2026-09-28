@@ -18,6 +18,8 @@ urlpatterns = [
     path("certification/add", create_certification, name="create_certification"),
     path("certification/<uuid:id>/del/",delete_cert,name="delete_cert"),
     path("certification/<uuid:id>/edit/",edit_cert,name="edit_cert"),
+    path("certification/<uuid:cert_id>/star/", toggle_star_cert, name="toggle_star_cert"),
+
 
     path("projects/", show_projects, name="show_projects"),
     path("api/projects/", get_projects_json, name="get_projects_json"),
