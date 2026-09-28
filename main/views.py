@@ -12,6 +12,8 @@ import datetime
 
 from main.models import *
 
+def is_editor(user):
+    return user.groups.filter(name='Editor').exists()
 
 def register(request):
     form = UserCreationForm(request.POST or None)
@@ -140,7 +142,7 @@ def delete_cert(request, id):
 
 @login_required(login_url="/login/")  # Tambahkan baris ini
 def edit_cert(request, id):
-    if not request.user.is_superuser:
+    if not(is_editor(request.user) or request.user.is_superuser):
         raise PermissionDenied
 
     cert = get_object_or_404(Certification, pk=id)
@@ -229,7 +231,7 @@ def delete_project(request, project_id):
 
 # Tanpa cek is_superuser: semua akun yang sudah login boleh memberi star
 @login_required(login_url="/login/")
-def toggle_star(request, project_id):
+def toggle_star_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
 
     if request.method == "POST":

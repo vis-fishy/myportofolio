@@ -31,17 +31,7 @@
         </p>
         <form method="post" action="{% url 'main:delete_project' project.id %}" class="project-delete-form">
             {% csrf_token %}
-            <div class="form-group">
-                <input
-                    type="password"
-                    id="delete-password-{{ project.id }}"
-                    name="password"
-                    placeholder="Masukkan password"
-                    required
-                >
-            </div>
             <div class="project-delete-modal__actions">
-
                 <button type="button"
                         class="button button-secondary"
                         popovertarget="delete-project-{{ project.id }}"
