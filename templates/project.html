@@ -42,10 +42,10 @@
                     <p class="project-description">{{ project.description }}</p>
                     <div class="project-card-actions">
                         <div class="project-actions">
+                            {% include "components/project_star.html" with project=project %}
                             {% if project.project_url %}
                                 <a href="{{ project.project_url }}" class="button">Lihat Project</a>
                             {% endif %}
-                            {% include "components/project_star.html" with project=project %}
                             {% if user.is_superuser %}
                             {% include "components/project_delete_modal.html" with project=project %}
                             {% endif %}
