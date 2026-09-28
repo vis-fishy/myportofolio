@@ -68,3 +68,8 @@ https://chatgpt.com/share/6ab15516-412c-83ec-8dfb-86b2b6ed42c6 (password field a
 https://chatgpt.com/share/6ab1557f-3bdc-83ec-bd5f-cb0bfb1c9c97 (delete cert request handling)
 
 https://chatgpt.com/share/6ab155a8-df70-83ec-a546-3dbebd2546bb (edit cert request handling)
+
+### AI Disclosure Tugas 4
+Saya menggunakan claude versi web untuk memahami perintah tugas yang terkesan sedikit membingungkan bagi saya dan mencari cara dalam beberapa hal seperti metode yang bisa saya gunakan dalam menerapkan permission terhadap user yang berbeda, serta menempatkan user dalam sebuah grouping editor melalui django admin. beberapa metode yang saya tempuh adalah langsung mengakses list of permission yang dimiliki user, dan dari situ dapat di handle untuk visibilitas button yang dimiliki oleh setiap user.
+
+https://claude.ai/share/6274dcc5-68cf-454c-af9b-c0df3670a298
