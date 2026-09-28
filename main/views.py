@@ -106,7 +106,9 @@ def get_cert_json(request):
     if title_query:
         cert = cert.filter(title__icontains=title_query)
 
-    certs_json = serializers.serialize("json", cert)
+    certs_json = serializers.serialize(
+        "json", cert, use_natural_foreign_keys=True # Tambahkan argumen ini
+    )
     return HttpResponse(certs_json, content_type="application/json")
 
 @login_required(login_url="/login/")  # Tambahkan baris ini
