@@ -1,0 +1,21 @@
+<article class="project-card">
+    {% if project.project_image_url %}
+        <img src="{{ project.project_image_url }}"
+                alt="Gambar {{ project.title }}"
+                class="project-image">
+    {% endif %}
+    <h2>{{ project.title }}</h2>
+    <span class="project-category">{{ project.tech_stack }}</span>
+    <p class="project-description">{{ project.description }}</p>
+    <div class="project-card-actions">
+        <div class="project-actions">
+            {% include "components/project_star.html" with project=project %}
+            {% if project.project_url %}
+                <a href="{{ project.project_url }}" class="button">Lihat Project</a>
+            {% endif %}
+            {% if user.is_superuser %}
+            {% include "components/project_delete_modal.html" with project=project %}
+            {% endif %}
+        </div>
+    </div>
+</article>

@@ -1,0 +1,27 @@
+{% if cert.thumbnail %}
+<div class="certification-card">
+{% else %}
+<div class="certification-card" style="grid-template-areas: 'header header';">
+{% endif %}
+    <div class="card-header">
+        <h2>{{ cert.course_name }}</h2>
+        <p class="bio"><em>Published : in {{ cert.year_display }} by {{ cert.publisher }}</em></p>
+    </div>
+    {% if cert.thumbnail %}
+    <div class="card-thumbnail">
+        <span class="card-image"><img src="{{ cert.thumbnail }}" alt="thumbnail" width="70"></span>
+    </div>
+    {% endif %}
+    <div class="card-action">
+        {% include "components/cert_star.html" with cert=cert %}
+        {% if cert.verification_url %}
+        <a href="{{ cert.verification_url }}" target="_blank" class="button">Verifikasi</a>
+        {% endif %}
+        {% if perms.main.change_certification %}
+        <a href="{% url 'main:edit_cert' cert.id %}" class="button">Edit</a>
+        {% endif %}
+        {% if perms.main.delete_certification %}
+        {% include "components/cert_delete_modal.html" with cert=cert %}
+        {% endif %}
+    </div>
+</div>

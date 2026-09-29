@@ -8,7 +8,7 @@
         <div class="project-header">
             <div>
                 <h1>Projects</h1>
-                <p class="project-kicker">Karya yang saya bangun</p>
+                <p class="project-kicker">All the work i have done so far</p>
             </div>
             {% if user.is_superuser %}
             <a href="{% url 'main:create_project' %}"
@@ -31,27 +31,7 @@
         </form>
         <div class="project-page-grid project-grid">
             {% for project in project_list %}
-                <article class="project-card">
-                    {% if project.project_image_url %}
-                        <img src="{{ project.project_image_url }}"
-                                alt="Gambar {{ project.title }}"
-                                class="project-image">
-                    {% endif %}
-                    <h2>{{ project.title }}</h2>
-                    <span class="project-category">{{ project.tech_stack }}</span>
-                    <p class="project-description">{{ project.description }}</p>
-                    <div class="project-card-actions">
-                        <div class="project-actions">
-                            {% include "components/project_star.html" with project=project %}
-                            {% if project.project_url %}
-                                <a href="{{ project.project_url }}" class="button">Lihat Project</a>
-                            {% endif %}
-                            {% if user.is_superuser %}
-                            {% include "components/project_delete_modal.html" with project=project %}
-                            {% endif %}
-                        </div>
-                    </div>
-                </article>
+                {% include "components/project_card.html" with project=project %}
             {% empty %}
                 {% if title_query %}
                     <p class="empty-state">Tidak ada proyek dengan nama tersebut.</p>
