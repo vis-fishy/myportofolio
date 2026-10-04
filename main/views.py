@@ -102,11 +102,11 @@ def show_certification(request):
     return render(request, "certification.html", context)
 
 def get_cert_json(request):
-    title_query = request.GET.get("title", "").strip()
+    title_query = request.GET.get("course_name", "").strip()
     cert = Certification.objects.all()
 
     if title_query:
-        cert = cert.filter(title__icontains=title_query)
+        cert = cert.filter(course_name__icontains=title_query)
 
     certs_json = serializers.serialize(
         "json", cert, use_natural_foreign_keys=True # Tambahkan argumen ini

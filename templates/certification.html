@@ -4,12 +4,37 @@
 <link rel="stylesheet" href="/static/css/certificate.css">
 {% endblock meta %}
 {% block content %}
-    <div class="container certification-grid">
-        <div class="certification-punchline">
-            <p class="kicker">I spended time on these</p>
-            <h2>My Certification</h2>
-            <p class="empty-state" style="padding-top: 15px;">Try click the cards :v</p>
+    <div class="container">
+        <div class="cert-header">
+            <div>
+                <h1>Certification</h1>
+                <p class="kicker">I spended time on these</p>
+            </div>
+            <div>
+                <!-- <button type="button"
+                        class="button cert-add-button"
+                        popovertarget="add-cert-modal">
+                    <span aria-hidden="true">+</span>
+                    Tambah Proyek
+                </button> -->
+                <a href="{% url 'main:create_certification' %}"
+                       class="button project-add-button">
+                    <span aria-hidden="true">+</span>
+                    Tambah Sertifikasi
+                </a>
+            </div>
         </div>
+
+        <form id="project-search-form" class="project-search">
+            <input type="search"
+                    id="search-input"
+                    name="title"
+                    value="{{ title_query }}"
+                    placeholder="Cari berdasarkan nama sertifikasi"
+                    class="project-search__input"
+                    aria-label="Cari berdasarkan nama sertifikasi">
+            <button type="submit" class="button">Cari</button>
+        </form>
 
         {% if certification_list %}
             <div class="certification-cards">

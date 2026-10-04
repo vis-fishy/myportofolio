@@ -1,35 +1,62 @@
 /* ========================================
    CERTIFICATION PAGE
    ======================================== */
-
-.certification-grid {
-    display: grid;
-    gap: 2.5rem 3rem;
-    grid-template-columns: 0fr 1fr 0fr;
-    grid-template-areas:
-        "left center right"
-        "card card card";
+.cert-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-.certification-punchline {
-    text-align: center;
-    grid-area: center;
+.cert-add-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
 }
 
-.certification-punchline h2 {
-    font-size: clamp(1.8rem, 3vw, 3rem);
-    line-height: 0.85;
-}
-
-.kicker {
-    font-size: 0.85rem;
+.kicker { 
+    color: var(--accent-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent-dark);
-    font-weight: 700;
-    margin-bottom: 0.75rem;
 }
 
+/* 
+==================================
+CERTIFICATION SEARCH SECTION
+==================================
+*/
+
+.project-search {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-search__input {
+    width: 100%;
+    min-width: 0;
+    padding: 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+}
+
+.project-search__input:focus {
+    outline: 2px solid var(--accent);
+    border-color: var(--accent);
+}
+
+/* 
+==================================
+CERTIFICATION CARDS SECTION
+==================================
+*/
 .certification-cards {
     grid-area: card;
     display: grid;
@@ -37,7 +64,7 @@
     gap: 1.5rem 1rem;
 }
 
-.certification-cards .card-columns {
+.card-columns {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -62,7 +89,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.75rem;
-    align-items: center;
+    /* align-items: center; */
     min-width: 0;
     flex: 1;
 }
@@ -71,30 +98,13 @@
     grid-template-columns: 1fr;
 }
 
-.certification-card .card-header {
+.card-header {
     min-width: 0;
     align-content: center;
 }
 
 .card-header h2 {
-    font-size: clamp(0.5rem, 1.5rem, 2rem);
-    line-height: 1.2;
-}
-
-.certification-card .card-thumbnail {
-    display: grid;
-    place-items: center;
-    align-self: center;
-}
-
-.card-thumbnail .card-image {
-    display: grid;
-    place-items: center;
-}
-
-.card-image {
-    display: grid;
-    place-items: center;
+    font-size: 1.25rem;
 }
 
 .bio {
@@ -102,25 +112,28 @@
     max-width: 480px;
 }
 
-.card-action {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    gap: 0.5rem;
-    padding-top: 0.75rem;
-    margin-top: auto;
+.card-thumbnail {
+    padding: 0.35rem;
+    padding-bottom: 0px;
+    padding-right: 0px;
 }
 
-.button {
-    display: inline-block;
-    height: fit-content;
-    border: 0;
-    border-radius: var(--radius);
-    padding: 0.4rem 1rem;
-    font: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
+/* .card-image {
+    display: grid;
+    place-items: center;
+} */
+
+.card-action {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 0rem 0.25rem;
+}
+
+.card-action .button {
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 /* ========================================
