@@ -1,8 +1,8 @@
 <div class="certification-card">
     {% if cert.thumbnail %}
-    <div class="ceritification-desc">
+    <div class="certification-desc">
     {% else %}
-    <div class="ceritification-desc" style="grid-template-areas: 'header header';">
+    <div class="certification-desc certification-desc--no-thumbnail">
     {% endif %}
         <div class="card-header">
             <h2>{{ cert.course_name }}</h2>

@@ -44,28 +44,37 @@
 }
 
 .certification-card {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     min-height: 6.5rem;
-    grid-template-columns: 1fr 90px;
-    grid-template-areas:
-        "header thumbnail";
     border: 1px solid var(--line);
     outline: 5px solid transparent;
     padding: 0.5rem 0.8rem 0.5rem;
     border-radius: var(--radius);
-    transition:
-        outline-color 0.3s ease;
+    transition: outline-color 0.3s ease;
 }
 
 .certification-card:hover {
     outline-color: var(--accent-50);
 }
 
-.certification-card .card-header {
-    grid-area: header;
-    align-content: center;
+.certification-desc {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: center;
+    min-width: 0;
+    flex: 1;
 }
 
+.certification-desc--no-thumbnail {
+    grid-template-columns: 1fr;
+}
+
+.certification-card .card-header {
+    min-width: 0;
+    align-content: center;
+}
 
 .card-header h2 {
     font-size: clamp(0.5rem, 1.5rem, 2rem);
@@ -73,16 +82,14 @@
 }
 
 .certification-card .card-thumbnail {
-    grid-area: thumbnail;
     display: grid;
-    grid-template-areas:
-        "a b c"
-        "d center e"
-        "f g h";
+    place-items: center;
+    align-self: center;
 }
 
 .card-thumbnail .card-image {
-    grid-area: center;
+    display: grid;
+    place-items: center;
 }
 
 .card-image {
@@ -97,9 +104,11 @@
 
 .card-action {
     display: flex;
-    padding: 0.5rem 0rem;
-    flex-direction: row;
-    column-gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    margin-top: auto;
 }
 
 .button {
