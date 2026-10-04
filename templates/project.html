@@ -131,7 +131,7 @@
             : '';
 
         const urlHtml = project.project_url 
-            ? `<a href="${project.project_url}" class="button">Lihat Project</a>`
+            ? `<a href="${escapeHtml(project.project_url)}" class="button">Lihat Project</a>`
             : '';
 
         // Dummy UUID digunakan untuk digantikan oleh ID asli dari data JSON
@@ -172,7 +172,7 @@
                             <span class="star-count">${project.star_count}</span>
                         </button>
                     </form>
-                    ${escapeHtml(urlHtml)}
+                    ${urlHtml}
                     ${deleteHtml}
                 </div>
             </div>
