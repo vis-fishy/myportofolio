@@ -93,6 +93,7 @@ def show_certification(request):
     context = {
         "name": "Elvis",
         "title_query": title_query,
+        "form": CertificationForm(),
     }
     return render(request, "certification.html", context)
 
@@ -115,6 +116,7 @@ def get_cert_json(request):
             "fields": {
                 "thumbnail": cert.thumbnail,
                 "course_name": cert.course_name,
+                "verification_url": cert.verification_url,
                 "publisher": cert.publisher,
                 "year_display": cert.year_display,
                 "finished_at": cert.finished_at,
@@ -196,6 +198,23 @@ def toggle_star_cert(request, cert_id):
 
     return redirect("main:show_certification")
 
+@require_POST
+def create_cert_ajax(request):
+    if not request.user.is_superuser:
+        return JsonResponse(
+            {"message": "Hanya pemilik portofolio yang dapat menambahkan proyek."},
+            status=403,
+        )
+
+    form = CertificationForm(request.POST)
+    if form.is_valid():
+        cert = form.save()
+        return JsonResponse(
+            {"message": "Sertifikasi berhasil ditambahkan.", "pk": str(cert.id)},
+            status=201,
+        )
+
+    return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
 
 
 # PROJECT ACTION
