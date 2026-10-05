@@ -11,17 +11,17 @@
                 <p class="kicker">I spended time on these</p>
             </div>
             <div>
-                <!-- <button type="button"
+                <button type="button"
                         class="button cert-add-button"
                         popovertarget="add-cert-modal">
                     <span aria-hidden="true">+</span>
-                    Tambah Proyek
-                </button> -->
-                <a href="{% url 'main:create_certification' %}"
+                    Tambah Sertifikasi
+                </button>
+                <!-- <a href="{% url 'main:create_certification' %}"
                        class="button project-add-button">
                     <span aria-hidden="true">+</span>
                     Tambah Sertifikasi
-                </a>
+                </a> -->
             </div>
         </div>
 
@@ -79,9 +79,13 @@
 
         <!-- Project Grid -->
         <div id="grid" class="certification-cards hide">
-            
+
         </div>
     </div>
+
+    {% if user.is_superuser %}
+        {% include "components/cert_form_modal.html" %}
+    {% endif %}
 
     <script>
     // Konfigurasi
@@ -200,7 +204,6 @@
                 ${deleteHtml}
             </div>
         `;
-
         return cardElement;
     }
 
@@ -257,17 +260,13 @@
         clearTimeout(searchDebounceTimer);
         searchProjects();
     });
-
-// ============================
-// check again
-// ============================
-
+    
     // Start application
     function closeProjectModal() {
-        document.getElementById("add-project-modal").hidePopover();
+        document.getElementById("add-cert-modal").hidePopover();
     }
-    const CREATE_PROJECT_ENDPOINT = "{% url 'main:create_project_ajax' %}";
-    const projectForm = document.getElementById('project-form');
+    const CREATE_CERT_ENDPOINT = "{% url 'main:create_cert_ajax' %}";
+    const certForm = document.getElementById('cert-form');
 
     // Membaca nilai cookie, digunakan untuk mengambil token CSR
     function getCookie(name) {
@@ -286,23 +285,23 @@
     }
 
     // Mengirim data form ke server
-    async function addProject(event) {
+    async function addCert(event) {
         event.preventDefault();
 
-        const submitButton = projectForm.querySelector('button[type="submit"]');
+        const submitButton = certForm.querySelector('button[type="submit"]');
         submitButton.disabled = true;
 
         try {
-            const response = await fetch(CREATE_PROJECT_ENDPOINT, {
+            const response = await fetch(CREATE_CERT_ENDPOINT, {
                 method: 'POST',
                 headers: { 'X-CSRFToken': getCookie('csrftoken') },
-                body: new FormData(projectForm),
+                body: new FormData(certForm),
             });
             const result = await response.json().catch(() => ({}));
 
             if (response.ok) {
-                projectForm.reset();
-                showToast('Berhasil', 'Proyek baru berhasil ditambahkan!', 'success');
+                certForm.reset();
+                showToast('Berhasil', 'Sertifikasi baru berhasil ditambahkan!', 'success');
                 fetchProjects(searchInput.value.trim());
                 closeProjectModal();
             } else {
@@ -319,8 +318,8 @@
         }
     }
 
-    if (projectForm) {
-        projectForm.addEventListener('submit', addProject);
+    if (certForm) {
+        certForm.addEventListener('submit', addCert);
     }
     fetchProjects(searchInput.value.trim());
     </script>

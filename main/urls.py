@@ -19,6 +19,7 @@ urlpatterns = [
     path("certification/<uuid:id>/del/",delete_cert,name="delete_cert"),
     path("certification/<uuid:id>/edit/",edit_cert,name="edit_cert"),
     path("certification/<uuid:cert_id>/star/", toggle_star_cert, name="toggle_star_cert"),
+    path("certification/add-ajax/", create_cert_ajax, name="create_cert_ajax"),
 
 
     path("projects/", show_projects, name="show_projects"),
