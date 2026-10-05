@@ -113,3 +113,21 @@ class CertificationForm(ModelForm):
                 }
             ),
         }
+
+    def clean_year_display(self):
+        year_input = strip_tags(self.cleaned_data["year_input"]).strip()
+        if not year_input:
+            raise ValidationError("Nama proyek tidak boleh hanya berisi tag HTML.")
+        return year_input
+    
+    def clean_publisher(self):
+        publisher = strip_tags(self.cleaned_data["publisher"]).strip()
+        if not publisher:
+            raise ValidationError("Nama proyek tidak boleh hanya berisi tag HTML.")
+        return publisher
+
+    def clean_course_name(self):
+        course_name = strip_tags(self.cleaned_data["course_name"]).strip()
+        if not course_name:
+            raise ValidationError("Nama proyek tidak boleh hanya berisi tag HTML.")
+        return course_name
