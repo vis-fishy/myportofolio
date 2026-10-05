@@ -88,30 +88,43 @@ def show_experience(request):
 
 # CERTIFICATION ACTION
 def show_certification(request):
-    json_response = get_cert_json(request)
-    
-    cert = serializers.deserialize(
-        "json",
-        json_response.content.decode("utf-8"),
-    )
-    cert = [certif.object for certif in cert]
+    title_query = request.GET.get("title", "").strip()
+
     context = {
         "name": "Elvis",
-        "certification_list": cert,
+        "title_query": title_query,
     }
     return render(request, "certification.html", context)
 
 def get_cert_json(request):
-    title_query = request.GET.get("course_name", "").strip()
-    cert = Certification.objects.all()
+    title_query = request.GET.get("title", "").strip()    
+    cert = Certification.objects.prefetch_related('starred_by').all()
 
     if title_query:
         cert = cert.filter(course_name__icontains=title_query)
 
-    certs_json = serializers.serialize(
-        "json", cert, use_natural_foreign_keys=True # Tambahkan argumen ini
-    )
-    return HttpResponse(certs_json, content_type="application/json")
+    # Konstruksi data JSON secara manual agar bisa menyisipkan logika Star
+    data = []
+    for cert in cert:
+        starred_users = cert.starred_by.all()
+        is_starred = request.user in starred_users if request.user.is_authenticated else False
+        starred_by_names = ", ".join([u.username for u in starred_users])
+
+        data.append({
+            "pk": str(cert.id),
+            "fields": {
+                "thumbnail": cert.thumbnail,
+                "course_name": cert.course_name,
+                "publisher": cert.publisher,
+                "year_display": cert.year_display,
+                "finished_at": cert.finished_at,
+                "star_count": starred_users.count(),
+                "is_starred": is_starred,
+                "starred_by_names": starred_by_names,
+            }
+        })
+
+    return JsonResponse(data, safe=False)
 
 @login_required(login_url="/login/")  # Tambahkan baris ini
 def create_certification(request):
