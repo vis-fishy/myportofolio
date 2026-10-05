@@ -73,3 +73,14 @@ https://chatgpt.com/share/6ab155a8-df70-83ec-a546-3dbebd2546bb (edit cert reques
 Saya menggunakan claude versi web untuk memahami perintah tugas yang terkesan sedikit membingungkan bagi saya dan mencari cara dalam beberapa hal seperti metode yang bisa saya gunakan dalam menerapkan permission terhadap user yang berbeda, serta menempatkan user dalam sebuah grouping editor melalui django admin. beberapa metode yang saya tempuh adalah langsung mengakses list of permission yang dimiliki user, dan dari situ dapat di handle untuk visibilitas button yang dimiliki oleh setiap user.
 
 https://claude.ai/share/6274dcc5-68cf-454c-af9b-c0df3670a298
+
+### Tugas 5
+
+1. debouncing adalah sebuah cara untuk mengurangi frekuensi eksekusi fetching data, dimana diberlakukan sebuah timer yang menjadi penentu apakah sudah perlu dilakukan fetching atau masih perlu menunggu input dari user (alias belum perlu melakukan fetching). singkatnya bisa kita analogikan seperti sedang menunggu penyelesaian input sebelum memberikan response. hal ini penting diterapkan untuk mengurangi penggunaan resource server yang mana dalam konteks ini pengurangan eksekusi fetching data ke server.
+2. await berfungsi untuk melakukan aksi "menunggu" suatu Promise selesai melakukan tugasnya, dimana dalam konteks proyek ini, kita melakukan fetching data yang memerlukan pihak server untuk memberikan response terlebih dahulu dalam sepersekian detik, tapi tetap saja sepersekian detik merupakan waktu yang diperlukan, alias tidak instant. tanpa await, fungsi seperti fetch() akan hanya memberikan sebuah Promise yang belum selesai.
+3. XSS adalah sebuah cara untuk user (jika tidak ditangani oleh developer) untuk melakukan perubahan pada suatu page melalui pengisian data yang nantinya data tersebut ditampilkan dalam page. singkatnya, user bisa meletakkan sebuah perintah (apapun) dengan cara ini jika tidak ditangani oleh developer. Alasan mengapa AJAX atau JS lebih rentan dalam hal ini dibandingkan Django, adalah karena script js tidak langsung melakukan proses perubahan escape character secara otomatis seperti Django. contoh character yang perlu diberlakukan proses tersebut ialah <, >, ", ', & dan lain sebagainya.
+
+### AI Disclosure Tugas 5
+Saya menggunakan claude versi web untuk melakukan penyalinan template, yang nantinya saya kondisikan lagi isinya sesuai dengan yang aku mau. saya juga menggunakannya untuk memahami beberapa konsep seperti async dan await, serta melakukan pengecekan tentang prediksi kesalahan yang mungkin dalam beberapa function dalam views dan file lainnya.
+
+https://claude.ai/share/655b3883-80c6-4e3c-9b19-f9626069fe29

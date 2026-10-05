@@ -89,7 +89,7 @@
 
     <script>
     // Konfigurasi
-    const BASE_PROJECTS_ENDPOINT = "{% url 'main:get_cert_json' %}";
+    const BASE_CERT_ENDPOINT = "{% url 'main:get_cert_json' %}";
     const IS_SUPERUSER = "{{ user.is_superuser|yesno:'true,false' }}" === "true";
     const CAN_CHANGE_CERT = "{{ perms.main.change_certification|yesno:'true,false' }}" === "true";
     const CAN_DELETE_CERT = "{{ perms.main.delete_certification|yesno:'true,false' }}" === "true";
@@ -215,7 +215,7 @@
         try {
             displayPageSection({ showLoading: true });
             
-            const url = searchQuery ? `${BASE_PROJECTS_ENDPOINT}?title=${encodeURIComponent(searchQuery)}` : BASE_PROJECTS_ENDPOINT;
+            const url = searchQuery ? `${BASE_CERT_ENDPOINT}?title=${encodeURIComponent(searchQuery)}` : BASE_CERT_ENDPOINT;
             
             const response = await fetch(url, {
                 headers: { 'Accept': 'application/json' },
@@ -224,13 +224,13 @@
 
             if (!response.ok) throw new Error('Failed to fetch data');
 
-            const projectData = await response.json();
+            const certData = await response.json();
 
-            if (projectData.length === 0) {
+            if (certData.length === 0) {
                 displayPageSection({ showEmpty: true });
             } else {
                 gridContainer.innerHTML = '';
-                projectData.forEach(item => {
+                certData.forEach(item => {
                     gridContainer.appendChild(buildCertificationCardElement(item));
                 });
                 displayPageSection({ showGrid: true });
@@ -243,7 +243,7 @@
     }
 
     // Event Handlers untuk Form Search
-    function searchProjects() {
+    function searchCerts() {
         fetchProjects(searchInput.value.trim());
     }
 
@@ -251,14 +251,14 @@
         clearTimeout(searchDebounceTimer);
 
         searchDebounceTimer = setTimeout(function() {
-            searchProjects();
+            searchCerts();
         }, SEARCH_DEBOUNCE_DELAY);
     });
 
     searchForm.addEventListener("submit", function(event) {
         event.preventDefault();
         clearTimeout(searchDebounceTimer);
-        searchProjects();
+        searchCerts();
     });
     
     // Start application
