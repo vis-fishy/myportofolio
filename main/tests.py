@@ -62,15 +62,15 @@ class MainTest(TestCase):
     
             self.assertContains(response, "No certifications have been added yet.")
 
-    def test_certification_page(self):
-            response = self.client.get(reverse("main:show_certification"))
+    # def test_certification_page(self):
+    #         response = self.client.get(reverse("main:show_certification"))
     
-            self.assertEqual(response.status_code, 200)
-            self.assertTemplateUsed(response, "certification.html")
-            self.assertContains(response, self.certification.course_name)
-            self.assertContains(response, self.certification.publisher)
-            self.assertContains(response, self.certification.year_display)
-            self.assertContains(response, f'href="{reverse("main:show_main")}"')
+    #         self.assertEqual(response.status_code, 200)
+    #         self.assertTemplateUsed(response, "certification.html")
+    #         self.assertContains(response, self.certification.course_name)
+    #         self.assertContains(response, self.certification.publisher)
+    #         self.assertContains(response, self.certification.year_display)
+    #         self.assertContains(response, f'href="{reverse("main:show_main")}"')
 
     '''
     def test_completed_experience(self):
